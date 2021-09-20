@@ -78,7 +78,6 @@ OPTIONS:
    --gas-premium value          set gas premium for initialization messages in AttoFIL (default: "0")
    --from value                 select which address to send actor creation message from
    --help, -h                   show help (default: false)
-   --version, -v                print the version (default: false)
    
 ```
 
@@ -160,8 +159,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -203,11 +201,11 @@ USAGE:
 
 DESCRIPTION:
    The backup command writes a copy of node metadata under the specified path
-
-Online backups:
-For security reasons, the daemon must be have LOTUS_BACKUP_BASE_PATH env var set
-to a path where backup files are supposed to be saved, and the path specified in
-this command must be within this base path
+   
+   Online backups:
+   For security reasons, the daemon must be have LOTUS_BACKUP_BASE_PATH env var set
+   to a path where backup files are supposed to be saved, and the path specified in
+   this command must be within this base path
 
 OPTIONS:
    --offline   create backup without the node running (default: false)
@@ -249,8 +247,7 @@ COMMANDS:
    help, h                Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -338,8 +335,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -432,7 +428,6 @@ OPTIONS:
    --hide-sectors-info  hide sectors info (default: false)
    --blocks value       Log of produced <blocks> newest blocks and rewards(Miner Fee excluded) (default: 0)
    --help, -h           show help (default: false)
-   --version, -v        print the version (default: false)
    
 ```
 
@@ -463,8 +458,7 @@ COMMANDS:
    help, h       Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -511,8 +505,7 @@ COMMANDS:
    help, h    Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -539,23 +532,22 @@ USAGE:
 
 DESCRIPTION:
    Set the log level for logging systems:
-
-   The system flag can be specified multiple times.
-
-   eg) log set-level --system chain --system chainxchg debug
-
-   Available Levels:
-   debug
-   info
-   warn
-   error
-
-   Environment Variables:
-   GOLOG_LOG_LEVEL - Default log level for all log systems
-   GOLOG_LOG_FMT   - Change output log format (json, nocolor)
-   GOLOG_FILE      - Write logs to file
-   GOLOG_OUTPUT    - Specify whether to output to file, stderr, stdout or a combination, i.e. file+stderr
-
+   
+      The system flag can be specified multiple times.
+   
+      eg) log set-level --system chain --system chainxchg debug
+   
+      Available Levels:
+      debug
+      info
+      warn
+      error
+   
+      Environment Variables:
+      GOLOG_LOG_LEVEL - Default log level for all log systems
+      GOLOG_LOG_FMT   - Change output log format (json, nocolor)
+      GOLOG_FILE      - Write logs to file
+      GOLOG_OUTPUT    - Specify whether to output to file, stderr, stdout or a combination, i.e. file+stderr
 
 OPTIONS:
    --system value  limit to log system
@@ -631,8 +623,7 @@ COMMANDS:
    help, h            Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -679,8 +670,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -839,8 +829,7 @@ COMMANDS:
    help, h    Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -859,8 +848,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -963,8 +951,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1034,8 +1021,7 @@ COMMANDS:
    help, h           Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1132,8 +1118,7 @@ COMMANDS:
    help, h       Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1261,8 +1246,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1281,8 +1265,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1340,8 +1323,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1416,8 +1398,7 @@ COMMANDS:
    help, h      Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1501,8 +1482,7 @@ COMMANDS:
    help, h            Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1670,7 +1650,6 @@ COMMANDS:
 OPTIONS:
    --really-do-it  pass this flag if you know what you are doing (default: false)
    --help, -h      show help (default: false)
-   --version, -v   print the version (default: false)
    
 ```
 
@@ -1781,8 +1760,7 @@ COMMANDS:
    help, h    Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1831,8 +1809,7 @@ COMMANDS:
    help, h    Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1913,9 +1890,9 @@ USAGE:
 
 DESCRIPTION:
    Sectors can be stored across many filesystem paths. These
-commands provide ways to manage the storage the miner will used to store sectors
-long term for proving (references as 'store') as well as how sectors will be
-stored while moving through the sealing pipeline (references as 'seal').
+   commands provide ways to manage the storage the miner will used to store sectors
+   long term for proving (references as 'store') as well as how sectors will be
+   stored while moving through the sealing pipeline (references as 'seal').
 
 COMMANDS:
    attach   attach local storage path
@@ -1925,8 +1902,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -1940,24 +1916,23 @@ USAGE:
 
 DESCRIPTION:
    Storage can be attached to the miner using this command. The storage volume
-list is stored local to the miner in $LOTUS_MINER_PATH/storage.json. We do not
-recommend manually modifying this value without further understanding of the
-storage system.
-
-Each storage volume contains a configuration file which describes the
-capabilities of the volume. When the '--init' flag is provided, this file will
-be created using the additional flags.
-
-Weight
-A high weight value means data will be more likely to be stored in this path
-
-Seal
-Data for the sealing process will be stored here
-
-Store
-Finalized sectors that will be moved here for long term storage and be proven
-over time
+   list is stored local to the miner in $LOTUS_MINER_PATH/storage.json. We do not
+   recommend manually modifying this value without further understanding of the
+   storage system.
    
+   Each storage volume contains a configuration file which describes the
+   capabilities of the volume. When the '--init' flag is provided, this file will
+   be created using the additional flags.
+   
+   Weight
+   A high weight value means data will be more likely to be stored in this path
+   
+   Seal
+   Data for the sealing process will be stored here
+   
+   Store
+   Finalized sectors that will be moved here for long term storage and be proven
+   over time
 
 OPTIONS:
    --init               initialize the path first (default: false)
@@ -1982,9 +1957,8 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
-   --color        use color in display output (default: depends on output being a TTY)
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --color     use color in display output (default: depends on output being a TTY)
+   --help, -h  show help (default: false)
    
 ```
 
@@ -2045,8 +2019,7 @@ COMMANDS:
    help, h     Shows a list of commands or help for one command
 
 OPTIONS:
-   --help, -h     show help (default: false)
-   --version, -v  print the version (default: false)
+   --help, -h  show help (default: false)
    
 ```
 
