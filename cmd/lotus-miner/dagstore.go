@@ -295,23 +295,12 @@ var dagstoreInvertedIndexSizeCmd = &cli.Command{
 
 		ctx := lcli.ReqContext(cctx)
 
-		collected, err := marketsApi.DagstoreGC(ctx)
+		size, err := marketsApi.DagstoreInvertedIndexSize(ctx)
 		if err != nil {
 			return err
 		}
 
-		if len(collected) == 0 {
-			_, _ = fmt.Fprintln(os.Stdout, "no shards collected")
-			return nil
-		}
-
-		for _, e := range collected {
-			if e.Error == "" {
-				_, _ = fmt.Fprintln(os.Stdout, e.Key, color.New(color.FgGreen).Sprint("SUCCESS"))
-			} else {
-				_, _ = fmt.Fprintln(os.Stdout, e.Key, color.New(color.FgRed).Sprint("ERROR"), e.Error)
-			}
-		}
+		fmt.Println(size)
 
 		return nil
 	},
