@@ -22,7 +22,9 @@
   * [DagstoreGC](#DagstoreGC)
   * [DagstoreInitializeAll](#DagstoreInitializeAll)
   * [DagstoreInitializeShard](#DagstoreInitializeShard)
+  * [DagstoreInvertedIndexSize](#DagstoreInvertedIndexSize)
   * [DagstoreListShards](#DagstoreListShards)
+  * [DagstoreLookupPieces](#DagstoreLookupPieces)
   * [DagstoreRecoverShard](#DagstoreRecoverShard)
 * [Deals](#Deals)
   * [DealsConsiderOfflineRetrievalDeals](#DealsConsiderOfflineRetrievalDeals)
@@ -430,6 +432,16 @@ Inputs:
 
 Response: `{}`
 
+### DagstoreInvertedIndexSize
+DagstoreInvertedIndexSize returns the size of the inverted index.
+
+
+Perms: admin
+
+Inputs: `null`
+
+Response: `9`
+
 ### DagstoreListShards
 DagstoreListShards returns information about all shards known to the
 DAG store. Only available on nodes running the markets subsystem.
@@ -438,6 +450,21 @@ DAG store. Only available on nodes running the markets subsystem.
 Perms: read
 
 Inputs: `null`
+
+Response: `null`
+
+### DagstoreLookupPieces
+DagstoreLookupPieces returns information about shards that contain the given CID.
+
+
+Perms: admin
+
+Inputs:
+```json
+[
+  "string value"
+]
+```
 
 Response: `null`
 
