@@ -4,7 +4,12 @@ import (
 	"bytes"
 	"context"
 	"errors"
+	cid "github.com/ipfs/go-cid/_rsrch/cidiface"
 	"testing"
+
+	"github.com/filecoin-project/go-state-types/network"
+
+	market0 "github.com/filecoin-project/specs-actors/actors/builtin/market"
 
 	"github.com/golang/mock/gomock"
 	"github.com/ipfs/go-cid"
@@ -111,11 +116,12 @@ func TestStateRecoverDealIDs(t *testing.T) {
 		api.EXPECT().StateSearchMsg(ctx, pc).Return(&sealing.MsgLookup{
 			Receipt: sealing.MessageReceipt{
 				ExitCode: exitcode.Ok,
-				Return: cborRet(&market.PublishStorageDealsReturn{
+				Return: cborRet(&market0.PublishStorageDealsReturn{
 					IDs: []abi.DealID{dealId},
 				}),
 			},
 		}, nil)
+		api.EXPECT().StateNetworkVersion(ctx, nil).Return(network.Version0, nil)
 		api.EXPECT().StateMarketStorageDeal(ctx, dealId, nil).Return(&api2.MarketDeal{
 			Proposal: dealProposal,
 		}, nil)
