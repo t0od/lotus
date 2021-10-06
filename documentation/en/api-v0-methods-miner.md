@@ -2131,7 +2131,9 @@ Inputs:
     "Weight": 42,
     "MaxStorage": 42,
     "CanSeal": true,
-    "CanStore": true
+    "CanStore": true,
+    "Groups": null,
+    "AllowTo": null
   },
   {
     "Capacity": 9,
@@ -2241,7 +2243,9 @@ Response:
   "Weight": 42,
   "MaxStorage": 42,
   "CanSeal": true,
-  "CanStore": true
+  "CanStore": true,
+  "Groups": null,
+  "AllowTo": null
 }
 ```
 
