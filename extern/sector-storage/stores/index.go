@@ -29,6 +29,8 @@ var SkippedHeartbeatThresh = HeartbeatInterval * 5
 //  filesystem, local or networked / shared by multiple machines
 type ID string
 
+type Group = string
+
 type StorageInfo struct {
 	ID         ID
 	URLs       []string // TODO: Support non-http transports
@@ -38,8 +40,8 @@ type StorageInfo struct {
 	CanSeal  bool
 	CanStore bool
 
-	Groups  []string
-	AllowTo []string
+	Groups  []Group
+	AllowTo []Group
 }
 
 type HealthReport struct {
@@ -295,6 +297,8 @@ func (i *Index) StorageFindSector(ctx context.Context, s abi.SectorID, ft storif
 	storageIDs := map[ID]uint64{}
 	isprimary := map[ID]bool{}
 
+	allowTo := map[Group]struct{}{}
+
 	for _, pathType := range storiface.PathTypes {
 		if ft&pathType == 0 {
 			continue
@@ -324,6 +328,14 @@ func (i *Index) StorageFindSector(ctx context.Context, s abi.SectorID, ft storif
 
 			rl.Path = gopath.Join(rl.Path, ft.String(), storiface.SectorName(s))
 			urls[k] = rl.String()
+		}
+
+		if allowTo != nil && len(st.info.AllowTo) > 0 {
+			for _, group := range st.info.AllowTo {
+				allowTo[group] = struct{}{}
+			}
+		} else {
+			allowTo = nil // allow to any
 		}
 
 		out = append(out, SectorStorageInfo{
@@ -366,6 +378,22 @@ func (i *Index) StorageFindSector(ctx context.Context, s abi.SectorID, ft storif
 
 			if _, ok := storageIDs[id]; ok {
 				continue
+			}
+
+			if allowTo != nil {
+				allow := false
+				for _, group := range st.info.Groups {
+					if _, found := allowTo[group]; found {
+						log.Debugf("path %s in allowed group %s", st.info.ID, group)
+						allow = true
+						break
+					}
+				}
+
+				if !allow {
+					log.Debugf("not selecting on %s, not in allowed group, allow %#v; path has %#v", st.info.ID, allowTo, st.info.Groups)
+					continue
+				}
 			}
 
 			urls := make([]string, len(st.info.URLs))
