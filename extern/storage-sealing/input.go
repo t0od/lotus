@@ -2,6 +2,7 @@ package sealing
 
 import (
 	"context"
+	"os"
 	"sort"
 	"time"
 
@@ -19,6 +20,7 @@ import (
 	sectorstorage "github.com/filecoin-project/lotus/extern/sector-storage"
 	"github.com/filecoin-project/lotus/extern/sector-storage/ffiwrapper"
 	"github.com/filecoin-project/lotus/extern/storage-sealing/sealiface"
+	scClient "github.com/filecoin-project/sector-counter/client"
 )
 
 func (m *Sealing) handleWaitDeals(ctx statemachine.Context, sector SectorInfo) error {
@@ -458,9 +460,26 @@ func (m *Sealing) tryCreateDealSector(ctx context.Context, sp abi.RegisteredSeal
 func (m *Sealing) createSector(ctx context.Context, cfg sealiface.Config, sp abi.RegisteredSealProof) (abi.SectorNumber, error) {
 	// Now actually create a new sector
 
-	sid, err := m.sc.Next()
-	if err != nil {
-		return 0, xerrors.Errorf("getting sector number: %w", err)
+	//sid, err := m.sc.Next()
+	//if err != nil {
+	//	return 0, xerrors.Errorf("getting sector number: %w", err)
+	//}
+	var err error
+	var sid abi.SectorNumber
+	if _, ok := os.LookupEnv("SC_TYPE"); ok {
+		sid0, err := scClient.NewClient().GetSectorID(context.Background(), "")
+		if err != nil {
+			log.Errorf("%+v", err)
+			return 0, xerrors.Errorf("getting sector number: %w", err)
+		}
+		sid = abi.SectorNumber(sid0)
+	} else {
+		sid0, err := m.sc.Next()
+		if err != nil {
+			log.Errorf("%+v", err)
+			return 0, xerrors.Errorf("getting sector number: %w", err)
+		}
+		sid = sid0
 	}
 
 	err = m.sealer.NewSector(ctx, m.minerSector(sp, sid))
