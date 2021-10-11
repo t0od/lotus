@@ -71,6 +71,8 @@ type scheduler struct {
 	closing  chan struct{}
 	closed   chan struct{}
 	testSync chan struct{} // used for testing
+
+	p12bindmap map[abi.SectorID]WorkerID
 }
 
 type workerHandle struct {
@@ -151,7 +153,7 @@ func newScheduler() *scheduler {
 		windowRequests: make(chan *schedWindowRequest, 20),
 		workerChange:   make(chan struct{}, 20),
 		workerDisable:  make(chan workerDisableReq),
-
+		p12bindmap: make(map[abi.SectorID]WorkerID),
 		schedQueue: &requestQueue{},
 
 		workTracker: &workTracker{
@@ -329,6 +331,8 @@ func (sh *scheduler) diag() SchedDiagInfo {
 	return out
 }
 
+
+
 func (sh *scheduler) trySched() {
 	/*
 		This assigns tasks to workers based on:
@@ -392,7 +396,18 @@ func (sh *scheduler) trySched() {
 					log.Debugw("skipping disabled worker", "worker", windowRequest.worker)
 					continue
 				}
-
+				//bind ap p1 p2
+				if task.taskType=="seal/v0/addpiece"{
+					sh.p12bindmap[task.sector.ID]=windowRequest.worker
+				}
+				if task.taskType=="seal/v0/precommit/1"||task.taskType=="seal/v0/precommit/2"{
+					if sh.p12bindmap[task.sector.ID]!=windowRequest.worker{
+						continue
+					}
+				}
+				if task.taskType=="seal/v0/commit/1"{
+					delete(sh.p12bindmap, task.sector.ID)
+				}
 				// TODO: allow bigger windows
 				if !windows[wnd].allocated.canHandleRequest(needRes, windowRequest.worker, "schedAcceptable", worker.info) {
 					continue
