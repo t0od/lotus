@@ -153,7 +153,7 @@ func newScheduler() *scheduler {
 		windowRequests: make(chan *schedWindowRequest, 20),
 		workerChange:   make(chan struct{}, 20),
 		workerDisable:  make(chan workerDisableReq),
-		p12bindmap: make(map[abi.SectorID]WorkerID),
+		p12bindmap: 	make(map[abi.SectorID]WorkerID),
 		schedQueue: &requestQueue{},
 
 		workTracker: &workTracker{
